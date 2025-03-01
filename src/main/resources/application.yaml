@@ -3,3 +3,5 @@ spring:
     open-in-view: false
   application:
     name: perftest
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
