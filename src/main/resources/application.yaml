@@ -5,3 +5,5 @@ spring:
     name: perftest
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yaml
+  profiles:
+    active: alloy-remote
