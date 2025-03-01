@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
+    url: jdbc:cloudspanner:/projects/spannertest-451509/instances/test/databases/test-db
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    url: jdbc:cloudspanner:/projects/spannertest-451509/instances/test/databases/test-db
+    driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
+  cloud:
+    gcp:
+      project-id: SpannerTest
+      spanner:
+        project-id: SpannerTest
+        enabled: true
+        instance-id: test
+        database: test-db
+        emulator:
+          enabled: false
+  jpa:
+    properties:
+      hibernate:
+        dialect:
+          org.hibernate.dialect.SpannerDialect

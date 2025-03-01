@@ -1,0 +1,27 @@
+### CREATE PERSON
+
+POST http://localhost:8080/api/persons
+Content-Type: application/json
+
+{
+  "firstName": "{{$random.name.firstName}}",
+  "lastName": "{{$random.name.lastName}}",
+  "email": "{{$random.email}}"
+}
+
+> {%
+    client.global.set("personId", response.body.id)
+%}
+
+### CREATE WALLET
+POST http://localhost:8080/api/wallets
+Content-Type: application/json
+
+{
+  "name": "{{$random.name.name}}",
+  "currency": "EUR",
+  "personId": "{{personId}}"
+}
+
+### GET PERSON WALLET
+GET http://localhost:8080/api/persons/{{personId}}/wallets

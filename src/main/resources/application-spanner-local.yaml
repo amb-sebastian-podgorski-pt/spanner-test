@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
+    url: jdbc:cloudspanner://localhost:9010/projects/test-project/instances/test-instance/databases/test-db?usePlainText=true
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml

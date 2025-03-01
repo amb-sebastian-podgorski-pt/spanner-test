@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+
+  spanner-emulator:
+    container_name: spanner-emulator-test
+    image: gcr.io/cloud-spanner-emulator/emulator:1.5.23
+    ports:
+      - "9010:9010"
+      - "9020:9020"
+
+  spanner-emulator-init:
+    container_name: spanner-emulator-init-db
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:427.0.0-emulators
+    depends_on:
+      - spanner-emulator
+    command: >
+      bash -c 'gcloud config configurations create emulator || true &&
+              gcloud config set auth/disable_credentials true &&
+              gcloud config set project $${PROJECT_ID} &&
+              gcloud config set api_endpoint_overrides/spanner $${SPANNER_EMULATOR_URL} &&
+              gcloud config set auth/disable_credentials true &&
+              gcloud spanner instances create $${INSTANCE_NAME} --config=emulator-config --description=Emulator &&
+              gcloud spanner databases create $${DATABASE_NAME} --instance $${INSTANCE_NAME} --project $${PROJECT_ID}'
+    environment:
+      PROJECT_ID: "test-project"
+      SPANNER_EMULATOR_URL: "http://spanner-emulator:9020/"
+      INSTANCE_NAME: "test-instance"
+      DATABASE_NAME: "test-db"
