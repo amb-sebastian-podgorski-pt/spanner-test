@@ -3,8 +3,8 @@ spring:
     driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
     url: jdbc:cloudspanner:/projects/spannertest-451509/instances/test/databases/test-db
     hikari:
-#      maximum-pool-size: 400
-#      minimum-idle: 400
+      maximum-pool-size: 400
+      minimum-idle: 400
   liquibase:
     url: jdbc:cloudspanner:/projects/spannertest-451509/instances/test/databases/test-db
     driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
