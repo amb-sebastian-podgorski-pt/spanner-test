@@ -1,8 +1,19 @@
 version: '3.8'
 services:
 
+  postgres:
+    image: postgres:17-alpine
+    profiles: ["alloy"]
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=db
+
   spanner-emulator:
     container_name: spanner-emulator-test
+    profiles: [ "spanner" ]
     image: gcr.io/cloud-spanner-emulator/emulator:1.5.23
     ports:
       - "9010:9010"
@@ -10,6 +21,7 @@ services:
 
   spanner-emulator-init:
     container_name: spanner-emulator-init-db
+    profiles: [ "spanner" ]
     image: gcr.io/google.com/cloudsdktool/cloud-sdk:427.0.0-emulators
     depends_on:
       - spanner-emulator
