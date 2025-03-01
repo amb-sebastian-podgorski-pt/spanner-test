@@ -42,10 +42,14 @@ dependencies {
 
 
 	// -------------- Spanner
-	implementation 'com.google.cloudspannerecosystem:liquibase-spanner:4.28.0'
-	implementation 'com.google.cloud:google-cloud-spanner-jdbc'
+//	implementation 'com.google.cloudspannerecosystem:liquibase-spanner:4.28.0'
+//	implementation 'com.google.cloud:google-cloud-spanner-jdbc'
 	// -------------- Spanner
 
+	// -------------- PostgreSQL
+	implementation("org.liquibase:liquibase-core")
+	runtimeOnly("org.postgresql:postgresql")
+	// -------------- PostgreSQL
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

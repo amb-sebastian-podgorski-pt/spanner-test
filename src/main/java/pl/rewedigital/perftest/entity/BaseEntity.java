@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.JdbcTypeCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.sql.Types;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -25,7 +23,7 @@ public class BaseEntity {
     }
 
     @Id
-    @JdbcTypeCode(Types.VARCHAR)
+    // @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
 
     @CreatedDate
