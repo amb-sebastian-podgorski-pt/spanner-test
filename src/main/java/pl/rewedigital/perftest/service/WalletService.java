@@ -10,12 +10,9 @@ import pl.rewedigital.perftest.entity.PersonEntity;
 import pl.rewedigital.perftest.entity.WalletEntity;
 import pl.rewedigital.perftest.exception.ResourceNotFoundException;
 import pl.rewedigital.perftest.mappers.WalletMappers;
-import pl.rewedigital.perftest.repository.PersonRepository;
 import pl.rewedigital.perftest.repository.WalletRepository;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,8 +24,8 @@ public class WalletService {
     private final PersonService personService;
 
     @Transactional
-    public WalletResponse createWallet(final WalletRequest walletRequest) {
-        final PersonEntity personEntity = personService.getPersonById(walletRequest.personId());
+    public WalletResponse createWallet(final UUID personId, final WalletRequest walletRequest) {
+        final PersonEntity personEntity = personService.getPersonById(personId);
 
         final WalletEntity wallet = new WalletEntity();
         wallet.setName(walletRequest.name());
