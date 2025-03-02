@@ -14,13 +14,12 @@ Content-Type: application/json
 %}
 
 ### CREATE WALLET
-POST http://localhost:8080/api/wallets
+POST http://localhost:8080/api/persons/{{personId}}/wallets
 Content-Type: application/json
 
 {
   "name": "{{$random.name.name}}",
-  "currency": "EUR",
-  "personId": "{{personId}}"
+  "currency": "EUR"
 }
 
 ### GET PERSON WALLET
