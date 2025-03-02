@@ -1,6 +1,19 @@
 spring:
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 100
+          fetch_size: 400
+          order_inserts: true
+          order_updates: true
+  datasource:
+    hikari:
+      auto-commit: false
+  threads:
+    virtual:
+      enabled: false
   application:
     name: perftest
   liquibase:
