@@ -27,7 +27,6 @@ public class PersonService {
         final PersonEntity personEntity = personRepository.findById(personId)
             .orElseThrow(() -> new ResourceNotFoundException("Person not found with id: " + personId));
 
-        // n+1
         return personEntity.getWallets().stream().map(WalletMappers::mapToResponse).toList();
     }
 

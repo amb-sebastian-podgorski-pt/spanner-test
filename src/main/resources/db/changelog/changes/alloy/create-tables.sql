@@ -49,3 +49,4 @@ ALTER TABLE transactions
 ALTER TABLE wallets
     ADD CONSTRAINT FK_WALLETS_ON_PERSON FOREIGN KEY (person_id) REFERENCES persons (id);
 
+CREATE INDEX idx_wallets_person_id ON wallets (person_id);
