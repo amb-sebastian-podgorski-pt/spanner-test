@@ -3,7 +3,7 @@ services:
 
   jagger-bomba:
     image: jaegertracing/jaeger:latest
-    profiles: ["alloy", "spanner"]
+    profiles: [ "alloy", "spanner", "tracing" ]
     ports:
       - "16686:16686"
       - "4317:4317"

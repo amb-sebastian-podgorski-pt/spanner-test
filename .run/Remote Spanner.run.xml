@@ -1,8 +1,18 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Remote Spanner" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="spanner-remote" />
+    <envs>
+      <env name="OTEL_EXPORTER_OTLP_ENDPOINT" value="http://localhost:4317" />
+      <env name="OTEL_EXPORTER_OTLP_PROTOCOL" value="grpc" />
+      <env name="OTEL_LOGS_EXPORTER" value="none" />
+      <env name="OTEL_METRICS_EXPORTER" value="none" />
+      <env name="OTEL_PROPAGATORS" value="tracecontext,b3" />
+      <env name="OTEL_SERVICE_NAME" value="perftest" />
+      <env name="OTEL_TRACES_EXPORTER" value="otlp" />
+    </envs>
     <module name="perftest.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="pl.rewedigital.perftest.PerftestApplication" />
+    <option name="VM_PARAMETERS" value="-javaagent:agent/opentelemetry-javaagent.jar" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
