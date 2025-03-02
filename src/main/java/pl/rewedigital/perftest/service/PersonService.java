@@ -11,8 +11,6 @@ import pl.rewedigital.perftest.exception.ResourceNotFoundException;
 import pl.rewedigital.perftest.mappers.WalletMappers;
 import pl.rewedigital.perftest.repository.PersonRepository;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 

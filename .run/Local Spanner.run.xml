@@ -2,6 +2,9 @@
   <configuration default="false" name="Local Spanner" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="spanner-local" />
     <module name="perftest.main" />
+    <selectedOptions>
+      <option name="environmentVariables" />
+    </selectedOptions>
     <option name="SPRING_BOOT_MAIN_CLASS" value="pl.rewedigital.perftest.PerftestApplication" />
     <method v="2">
       <option name="Make" enabled="true" />

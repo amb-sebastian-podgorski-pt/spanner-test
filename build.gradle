@@ -27,6 +27,7 @@ dependencyManagement {
 
 
 configurations {
+	agent
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -51,11 +52,27 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	// -------------- PostgreSQL
 
+	// -------------- Opentelemetry
+	agent "io.opentelemetry.javaagent:opentelemetry-javaagent:2.13.1"
+	implementation "io.opentelemetry:opentelemetry-api:1.47.0"
+	runtimeOnly "io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:2.13.1-alpha"
+	runtimeOnly "io.micrometer:micrometer-registry-prometheus"
+
+	// -------------- Opentelemetry
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+tasks.register('downloadAgent', Copy) {
+	from configurations.agent
+	rename('(.*)-.*(.jar)', '$1$2')
+	into 'agent/'
+}
+
+tasks.processResources.finalizedBy tasks.downloadAgent
 
 tasks.named('test') {
 	useJUnitPlatform()
