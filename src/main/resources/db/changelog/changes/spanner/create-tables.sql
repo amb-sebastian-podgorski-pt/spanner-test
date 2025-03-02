@@ -40,4 +40,4 @@ CREATE TABLE transactions
 CREATE UNIQUE INDEX uc_persons_email ON persons(email);
 ALTER TABLE transactions ADD FOREIGN KEY (wallet_id) REFERENCES wallets(id);
 ALTER TABLE wallets ADD FOREIGN KEY (person_id) REFERENCES persons(id);
-
+CREATE INDEX idx_wallets_person_id ON wallets (person_id), INTERLEAVE IN wallets;
