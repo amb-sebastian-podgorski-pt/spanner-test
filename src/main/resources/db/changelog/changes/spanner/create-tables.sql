@@ -10,7 +10,7 @@ CREATE TABLE persons
     version    INT64,
     first_name STRING(50) NOT NULL,
     last_name  STRING(50) NOT NULL,
-    email      STRING(50) NOT NULL
+    email      STRING(100) NOT NULL
 ) PRIMARY KEY (id);
 
 CREATE TABLE wallets
