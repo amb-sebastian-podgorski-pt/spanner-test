@@ -6,7 +6,7 @@ import {SharedArray} from "k6/data";
 // @ts-ignore
 import papaparse from 'https://jslib.k6.io/papaparse/5.1.1/index.js';
 
-const API_BASE_URL = __ENV.API_BASE_URL || 'https://perftest-371677414206.europe-central2.run.app/api';
+const API_BASE_URL = __ENV.API_BASE_URL || `https://perftest-371677414206.europe-central2.run.app/api`;
 
 interface PersonId {
     id: string

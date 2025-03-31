@@ -3,8 +3,7 @@ import {check} from "k6";
 import {Options} from "k6/options";
 import scenario from 'k6/execution'
 
-// const API_BASE_URL = __ENV.API_BASE_URL || 'https://perftest-371677414206.europe-central2.run.app/api';
-const API_BASE_URL = __ENV.API_BASE_URL || 'http://192.168.1.12:8080/api';
+const API_BASE_URL = __ENV.API_BASE_URL || 'https://perftest-371677414206.europe-central2.run.app/api';
 
 function addPerson(index: number) {
     const person = JSON.stringify({
@@ -28,7 +27,7 @@ export let options: Options = {
         persons: {
             executor: 'shared-iterations',
             vus: 5,
-            iterations: 100000,
+            iterations: 100,
             maxDuration: '5m'
         }
     },

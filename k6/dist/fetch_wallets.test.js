@@ -75,7 +75,7 @@ var index_js_default = /*#__PURE__*/__webpack_require__.n(index_js_namespaceObje
 
 // @ts-ignore
 
-var API_BASE_URL = __ENV.API_BASE_URL || 'https://perftest-371677414206.europe-central2.run.app/api';
+var API_BASE_URL = __ENV.API_BASE_URL || "https://perftest-371677414206.europe-central2.run.app/api";
 function getPersonIds() {
   return new data_namespaceObject.SharedArray('persons', function () {
     return index_js_default().parse(open("persons.csv"), {
