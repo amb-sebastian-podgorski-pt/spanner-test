@@ -29,13 +29,13 @@ Run each test individually using the k6 command:
 
 ```bash
 # Test GET /api/wallets/:id
-k6 run dist/wallet-get-test.js
+k6 run dist/fetch_wallets.test.js
 
-# Test POST /api/wallets/:id/transactions
-k6 run dist/wallet-transaction-post-test.js
+# Test POST /persons/:personId/wallets
+k6 run dist/create_wallets.test.js
 
-# Test GET /api/wallets/:id/transactions
-k6 run dist/wallet-transactions-get-test.js
+# Test POST /persons
+k6 run dist/create_persons.test.js
 ```
 
 ### 3. Customizing the tests
