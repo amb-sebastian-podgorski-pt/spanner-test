@@ -14,6 +14,8 @@ spring:
           in_clause_parameter_padding: true
           fail_on_pagination_over_collection_fetch: true
           plan_cache_max_size: 4096
+        format_sql: false
+    show-sql: false
   datasource:
     hikari:
       auto-commit: false

@@ -4,7 +4,7 @@ import {Options} from "k6/options";
 import scenario from 'k6/execution'
 
 // @ts-ignore
-    import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.3.0/index.js'
+import {uuidv4} from 'https://jslib.k6.io/k6-utils/1.3.0/index.js'
 
 const API_BASE_URL = __ENV.API_BASE_URL || 'https://perftest-371677414206.europe-central2.run.app/api';
 
@@ -28,10 +28,13 @@ function addPerson(index: number) {
 export let options: Options = {
     scenarios: {
         persons: {
-            executor: 'shared-iterations',
-            vus: 50,
-            iterations: 100000,
-            maxDuration: '5m'
+            preAllocatedVUs: 5,
+            maxVUs: 50,
+            executor: "ramping-arrival-rate",
+            stages: [
+                {target: 500, duration: '1m'},
+                {target: 500, duration: '4m'},
+            ]
         }
     },
     thresholds: {

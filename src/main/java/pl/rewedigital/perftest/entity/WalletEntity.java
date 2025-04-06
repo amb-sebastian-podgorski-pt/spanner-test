@@ -3,9 +3,9 @@ package pl.rewedigital.perftest.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @Table(name = "wallets")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 public class WalletEntity extends BaseEntity {
 
     @Column(nullable = false)

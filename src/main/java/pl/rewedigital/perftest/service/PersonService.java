@@ -8,7 +8,8 @@ import pl.rewedigital.perftest.dto.PersonResponse;
 import pl.rewedigital.perftest.dto.WalletResponse;
 import pl.rewedigital.perftest.entity.PersonEntity;
 import pl.rewedigital.perftest.exception.ResourceNotFoundException;
-import pl.rewedigital.perftest.mappers.WalletMappers;
+import pl.rewedigital.perftest.mappers.PersonMapper;
+import pl.rewedigital.perftest.mappers.WalletMapper;
 import pl.rewedigital.perftest.repository.PersonRepository;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class PersonService {
         final PersonEntity personEntity = personRepository.findById(personId)
             .orElseThrow(() -> new ResourceNotFoundException("Person not found with id: " + personId));
 
-        return personEntity.getWallets().stream().map(WalletMappers::mapToResponse).toList();
+        return personEntity.getWallets().stream().map(WalletMapper::mapToResponse).toList();
     }
 
     @Transactional
@@ -36,7 +37,7 @@ public class PersonService {
         person.setEmail(personRequest.email());
 
         final PersonEntity personEntity = personRepository.save(person);
-        return mapToResponse(personEntity);
+        return PersonMapper.mapToResponse(personEntity);
     }
 
     @Transactional(readOnly = true)
@@ -49,14 +50,5 @@ public class PersonService {
     @Transactional
     public PersonEntity update(final PersonEntity updatedPerson) {
         return personRepository.save(updatedPerson);
-    }
-
-    private PersonResponse mapToResponse(final PersonEntity person) {
-        return new PersonResponse(
-            person.getId(),
-            person.getFirstName(),
-            person.getLastName(),
-            person.getEmail()
-        );
     }
 }
