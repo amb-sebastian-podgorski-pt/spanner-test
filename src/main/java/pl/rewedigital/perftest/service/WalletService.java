@@ -7,7 +7,7 @@ import pl.rewedigital.perftest.dto.WalletRequest;
 import pl.rewedigital.perftest.dto.WalletResponse;
 import pl.rewedigital.perftest.entity.PersonEntity;
 import pl.rewedigital.perftest.entity.WalletEntity;
-import pl.rewedigital.perftest.mappers.WalletMappers;
+import pl.rewedigital.perftest.mappers.WalletMapper;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -31,6 +31,6 @@ public class WalletService {
 
         personService.update(updatedPerson);
 
-        return WalletMappers.mapToResponse(wallet);
+        return WalletMapper.mapToResponse(wallet);
     }
 }

@@ -24,3 +24,12 @@ Content-Type: application/json
 
 ### GET PERSON WALLET
 GET http://localhost:8080/api/persons/{{personId}}/wallets
+
+### CREATE TRANSACTION
+POST http://localhost:8080/api/persons/{{personId}}/transactions
+Content-Type: application/json
+
+{
+  "amount": "12.37",
+  "currency": "USD"
+}

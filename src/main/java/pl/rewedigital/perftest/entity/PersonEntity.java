@@ -2,9 +2,9 @@ package pl.rewedigital.perftest.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.List;
 @Table(name = "persons")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 public class PersonEntity extends BaseEntity {
 
     @Column(nullable = false)
