@@ -8,6 +8,22 @@ import {uuidv4} from 'https://jslib.k6.io/k6-utils/1.3.0/index.js'
 
 const API_BASE_URL = __ENV.API_BASE_URL || 'https://perftest-371677414206.europe-central2.run.app/api';
 
+function addWallet(personId: string, currency: string) {
+    const wallet = JSON.stringify({
+        name: uuidv4(),
+        currency: currency,
+    });
+
+    return http.post(`${API_BASE_URL}/persons/${personId}/wallets`, wallet, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }, tags: {
+            name: 'addWallet'
+        }
+    })
+}
+
 function addPerson(index: number) {
     const person = JSON.stringify({
         firstName: 'FN' + index,
@@ -28,15 +44,23 @@ function addPerson(index: number) {
 export let options: Options = {
     scenarios: {
         persons: {
-            preAllocatedVUs: 5,
-            maxVUs: 50,
-            executor: "ramping-arrival-rate",
-            stages: [
-                {target: 500, duration: '1m'},
-                {target: 500, duration: '4m'},
-            ]
+            executor: 'shared-iterations',
+            vus: 50,
+            iterations: 99999,
+            maxDuration: '5m'
         }
     },
+    // scenarios: {
+    //     persons: {
+    //         preAllocatedVUs: 5,
+    //         maxVUs: 50,
+    //         executor: "ramping-arrival-rate",
+    //         stages: [
+    //             {target: 500, duration: '1m'},
+    //             {target: 500, duration: '4m'},
+    //         ]
+    //     }
+    // },
     thresholds: {
         http_req_duration: ['p(95)<500'],
         http_req_failed: ['rate<0.01'],
@@ -47,6 +71,11 @@ export let options: Options = {
 export default () => {
     const currentIndex = scenario.scenario.iterationInInstance;
     const res = addPerson(currentIndex);
+
+    const personId: string = JSON.parse(res.body as string).id;
+
+    addWallet(personId, 'EUR');
+    addWallet(personId, 'USD')
 
     check(res, {
         'status is 200': () => res.status === 200,
