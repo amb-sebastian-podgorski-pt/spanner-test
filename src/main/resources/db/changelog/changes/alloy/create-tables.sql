@@ -27,6 +27,20 @@ CREATE TABLE wallets
     CONSTRAINT pk_wallets PRIMARY KEY (id)
 );
 
+CREATE TABLE transactions
+(
+    id         UUID         NOT NULL,
+    created_at TIMESTAMP WITHOUT TIME ZONE,
+    updated_at TIMESTAMP WITHOUT TIME ZONE,
+    version    BIGINT,
+    amount     DECIMAL      NOT NULL,
+    wallet_id  UUID         NOT NULL,
+    person_id  UUID         NOT NULL,
+    currency   VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_transactions PRIMARY KEY (id)
+);
+
+
 ALTER TABLE persons
     ADD CONSTRAINT uc_persons_email UNIQUE (email);
 
@@ -34,3 +48,9 @@ ALTER TABLE wallets
     ADD CONSTRAINT FK_WALLETS_ON_PERSON FOREIGN KEY (person_id) REFERENCES persons (id);
 
 CREATE INDEX idx_wallets_person_id ON wallets (person_id);
+
+ALTER TABLE transactions
+    ADD CONSTRAINT FK_TRANSACTIONS_ON_PERSON FOREIGN KEY (person_id) REFERENCES persons (id);
+
+ALTER TABLE transactions
+    ADD CONSTRAINT FK_TRANSACTIONS_ON_WALLET FOREIGN KEY (wallet_id) REFERENCES wallets (id);

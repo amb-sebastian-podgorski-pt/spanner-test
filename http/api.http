@@ -31,5 +31,5 @@ Content-Type: application/json
 
 {
   "amount": "12.37",
-  "currency": "USD"
+  "currency": "EUR"
 }
